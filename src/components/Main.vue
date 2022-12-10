@@ -13,7 +13,9 @@
             </div>
             <img v-if="isDrag" class="transition w-60 h-60 absolute bottom-0 right-0" src="/dropbox.gif" aria-hidden="true" />
         </div>
-    <ImageComparator v-for="file in files" :key="file.id" :image="file" />
+
+        <!-- Image List -->
+        <ImageList v-if="files.length" :files="files"/>
 </template>
 
 <script setup lang="ts">
@@ -21,7 +23,7 @@ import { ref } from 'vue';
 import { ImagesModel } from '@/model/images.model';
 import UploadImage from './UploadImage.vue';
 import { compressImages } from '@/service/compress';
-
+import ImageList from './ImageList.vue';
 
 const files = ref<ImagesModel[]>([]);
 const isDrag =  ref<boolean>(false);
