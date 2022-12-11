@@ -1,18 +1,43 @@
-# Vue 3 + TypeScript + Vite
+## <img alt="vue" src="https://avatars.githubusercontent.com/u/51039205?s=460&u=cb1d242b6a9b13a3b6383e46b5410fafe471b63d&v=4" width="20" height="20" /> Image Size Compressor (Dev)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[![ExoApps](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://exoappsv2.netlify.app/)
 
-## Recommended IDE Setup
+### Intro
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Introductions
+  - It is an Open Source Project
+- Tech Stack
 
-## Type Support For `.vue` Imports in TS
+  - <img src="https://img.icons8.com/fluent/48/000000/visual-studio-code-2019.png" width="14" height="14"/> Vs Code
+  - <img alt="vue" src="https://seeklogo.com/images/V/vuejs-logo-17D586B587-seeklogo.com.png" width="11" height="11" /> Vue and Vite
+  - <img alt="tailwindcss" src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.79614a5f61617ba49a0891494521226b.svg" width="14" height="14" /> TailwindCss
+  - Use CompressorJs (As Image Compressor)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Author
+  - Eko Sutrisno
+  - [Github](https://github.com/ekosutrisno) Or [Gitlab](https://gitlab.com/ekosutrisno1)
+  - Website [Eko Sutrisno](https://ekosutrisno.netlify.app)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### <img alt="vue" src="https://seeklogo.com/images/V/vuejs-logo-17D586B587-seeklogo.com.png" width="15" height="15" /> Vue Project Setup
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```shell
+npm install
+```
+
+- ##### Development
+
+```shell
+npm run dev
+```
+
+- ##### Compiles Production
+
+```shell
+npm run build
+```
+
+- ##### Preview Production
+
+```shell
+npm run serve
+```
