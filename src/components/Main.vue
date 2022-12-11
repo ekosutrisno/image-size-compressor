@@ -6,7 +6,7 @@
                     <img src="/file.svg" class="h-12" alt="Image Compressor" />
                     <div class="text-base leading-7 text-gray-600">
                         <p>Reduce your file size to save more storage space.</p>
-                            <UploadImage :files="files" @on-upload="(payload: ImagesModel[])=> files = payload" />
+                            <UploadImage :files="files" @on-upload="(payload: ImagesModel[])=> upload(payload)" />
                         <p>When you optimize images for the web, you're reducing page load time and increasing site speed.</p>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Image List -->
-        <ImageList v-if="files.length" :files="files"/>
+        <ImageList @clear="clearList" v-if="files.length" :files="files" />
 </template>
 
 <script setup lang="ts">
@@ -27,25 +27,42 @@ import ImageList from './ImageList.vue';
 
 const files = ref<ImagesModel[]>([]);
 const isDrag =  ref<boolean>(false);
+const isAdded = ref<boolean>(false);
 
-const onUploadFile = async (event: any, dragDrop?: boolean) => {
-    const filesTemp: File[] = dragDrop
-        ? event.dataTransfer.files
-        : event.target.files;
-
-    files.value = (await compressImages(filesTemp)).value
+function clearList() {
+    files.value = [];
 }
 
-const dragover = (event: any) => {
+async function dragAndDrop (event: any){
+    const filesTemp: File[] = event.dataTransfer.files;
+    
+    if(isAdded.value)
+        files.value.push(...(await compressImages(filesTemp)).value);
+    else
+        files.value= (await compressImages(filesTemp)).value;
+
+    isAdded.value = true;
+}
+
+function upload(images: ImagesModel[]) {
+    if(isAdded.value)
+        files.value.push(...images);
+    else
+        files.value = images;
+
+    isAdded.value = true;
+}
+
+function dragover(event: any){
     isDrag.value = true;
 }
 
-const dragleave = (event: any) => {
+function dragleave(event: any){
     isDrag.value = false;
 }
 
-const drop = (event: any) => {
+function drop(event: any){
     isDrag.value = false;
-    onUploadFile(event, true);
+    dragAndDrop(event);
 }
 </script>
