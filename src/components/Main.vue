@@ -3,11 +3,11 @@
             <div class="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
             <div :class="[isDrag ? 'border-dashed border-sky-400' : 'border-gray-900/5']" class="relative bg-white px-6 py-8 border-2 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
                 <div class="mx-auto max-w-md">
-                    <img src="/file.svg" class="h-12" alt="Image Compressor" />
+                    <img src="/file.svg" width="48" height="48" class="h-12" alt="Image Compressor" />
                     <div class="text-base leading-7 text-gray-600">
                         <p>Reduce your file size to save more storage space.</p>
                         <UploadImage :files="files" @on-upload="(payload: ImagesModel[])=> upload(payload)" />
-                        <p class="text-center text-xs text-gray-400">© {{new Date().getFullYear()}} Made with ♥ by Eko Sutrisno</p>
+                        <p class="text-center text-xs text-gray-400">© {{new Date().getFullYear()}} Made with ♥ by Eko Sutrisno <a class="hover:text-sky-500" :href="`https://github.com/ekosutrisno/image-size-compressor/commit/${latestVersion}`">({{ latestVersion }})</a></p>
                     </div>
                 </div>
             </div>
@@ -29,17 +29,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { ImagesModel } from '@/model/images.model';
 import UploadImage from './UploadImage.vue';
 import { compressImages } from '@/service/compress';
 import ImageList from './ImageList.vue';
 import NavbarAction from './NavbarAction.vue';
 import { downloadAll } from '@/service/utilities';
+import getGitCommit from '@/service/lastCommit';
 
 const files = ref<ImagesModel[]>([]);
 const isDrag =  ref<boolean>(false);
 const isAdded = ref<boolean>(false);
+const latestVersion = ref<string>('');
+
+onMounted(async ()=>latestVersion.value = await getGitCommit());
 
 function clearList() {
     files.value = [];
